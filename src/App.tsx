@@ -129,7 +129,7 @@ function Avatar() {
   return (
     <div className="group h-40 w-40 overflow-hidden rounded-full">
       <img
-        src="/monkey_pfp.png"
+        src={`${import.meta.env.BASE_URL}monkey_pfp.png`}
         alt={profile.name}
         className="h-full w-full object-cover [image-rendering:pixelated] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:group-hover:scale-105"
       />
