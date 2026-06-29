@@ -1,10 +1,13 @@
 import type { ReactNode } from 'react'
 
-/** UPPERCASE pixel section label — 12px, dim blue. */
-export function SectionTitle({ children }: { children: ReactNode }) {
+/** Two-column row: muted label on the left, content on the right (stacks on mobile). */
+export function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <h2 className="mb-5 font-pixel text-[18px] uppercase tracking-wide text-accent-dim">
-      {children}
-    </h2>
+    <section className="grid grid-cols-1 gap-2 sm:grid-cols-[6rem_1fr] sm:gap-8">
+      <h2 className="font-pixel text-sm uppercase tracking-wide text-ink sm:pt-1">
+        {title}
+      </h2>
+      <div>{children}</div>
+    </section>
   )
 }
