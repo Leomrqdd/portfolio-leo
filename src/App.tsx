@@ -23,7 +23,7 @@ function App() {
     <main className="mx-auto max-w-[640px] px-6 py-24 sm:py-32">
       <header className="reveal mb-16">
         <Avatar />
-        <h1 className="mt-6 text-base font-medium text-ink">{profile.name}</h1>
+        <h1 className="mt-6 text-base font-medium text-ink">Léo</h1>
         <p className="mt-1.5 font-pixel text-[11px] leading-relaxed text-muted">
           {profile.role}
         </p>

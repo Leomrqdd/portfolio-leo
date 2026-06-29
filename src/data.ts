@@ -25,7 +25,7 @@ export interface Link {
 }
 
 export const profile: Profile = {
-  name: 'Léo Marquand',
+  name: 'Léo Mrqd',
   role: 'Software engineer & technical lead',
 }
 
@@ -56,31 +56,31 @@ export const now: RichText[] = [
 
 export const work: WorkItem[] = [
   {
-    period: '2023 — now',
+    period: '2026',
     name: 'Kevred Load-Balancer',
     description:
       'An RPC load-balancer for Solana that reduces latency and improves reliability for devs and users. Based on Cloudflare Workers, written in TypeScript, and open-source.',
     href: 'https://www.kevred.com/',
   },
   {
-    period: '2024 — now',
+    period: '2026',
+    name: 'AI Agents',
+    description: [
+      'An agent that summarizes Solana X news into Telegram.',
+      'A DeFi agent optimized for high-frequency trading, fully built in Rust.',
+    ],
+  },
+  {
+    period: '2025',
     name: 'Roshambo',
     description:
       'A Solana Mobile dApp: on-chain Rock-Paper-Scissors where players bet SOL in a trustless, winner-takes-all game. Live on the dApp Store. Built for fun, as an educational project.',
     href: 'https://roshambo.kevred.com/',
   },
   {
-    period: '2023',
+    period: '2025',
     name: 'Onchain Lottery',
     description: 'An on-chain lottery on Solana, using VRF for verifiable on-chain randomness.',
-  },
-  {
-    period: '2024',
-    name: 'AI Agents',
-    description: [
-      'An agent that summarizes Solana X news into Telegram.',
-      'A DeFi agent optimized for high-frequency trading, fully built in Rust.',
-    ],
   },
 ]
 
