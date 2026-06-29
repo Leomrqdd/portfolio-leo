@@ -9,6 +9,20 @@
 
   --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-pixel: 'Silkscreen', monospace;
+
+  --animate-blink: blink 1.05s step-end infinite;
+}
+
+/* Block cursor blink */
+@keyframes blink {
+  0%,
+  50% {
+    opacity: 1;
+  }
+  50.01%,
+  100% {
+    opacity: 0;
+  }
 }
 
 @layer base {

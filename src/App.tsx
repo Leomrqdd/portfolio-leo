@@ -3,16 +3,18 @@ import { Section } from './components/Section'
 
 function App() {
   return (
-    <main className="reveal mx-auto max-w-[640px] px-6 py-24 sm:py-32">
-      <header className="mb-16">
+    <main className="mx-auto max-w-[640px] px-6 py-24 sm:py-32">
+      <header className="reveal mb-16">
         <Avatar />
         <h1 className="mt-6 text-base font-medium text-ink">{profile.name}</h1>
-        <p className="text-muted">{profile.role}</p>
+        <p className="mt-1.5 font-pixel text-[11px] leading-relaxed text-muted">
+          {profile.role}
+        </p>
         <p className="mt-5 max-w-prose text-ink/90">{profile.bio}</p>
       </header>
 
       <div className="space-y-12">
-        <Section title="Now">
+        <Section title="Now" delay={80}>
           <ul className="space-y-2">
             {now.map((line) => (
               <li key={line} className="text-ink/90">
@@ -22,7 +24,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="Work">
+        <Section title="Work" delay={160}>
           <ul className="divide-y divide-line">
             {work.map((item) => (
               <li key={item.name} className="py-4 first:pt-0 last:pb-0">
@@ -38,7 +40,7 @@ function App() {
           </ul>
         </Section>
 
-        <Section title="Connect">
+        <Section title="Connect" delay={240}>
           <ul className="space-y-1.5">
             {socials.map((s) => (
               <li key={s.label} className="flex gap-4">
@@ -57,7 +59,10 @@ function App() {
         </Section>
       </div>
 
-      <footer className="mt-24 border-t border-line pt-6 font-pixel text-[10px] uppercase tracking-wide text-muted">
+      <footer
+        className="reveal mt-24 border-t border-line pt-6 font-pixel text-[10px] uppercase tracking-wide text-muted"
+        style={{ animationDelay: '320ms' }}
+      >
         © {new Date().getFullYear()} {profile.name}
       </footer>
     </main>
@@ -67,11 +72,11 @@ function App() {
 /** Large circular pixel-art avatar with an 8-bit hard offset shadow. */
 function Avatar() {
   return (
-    <div className="h-40 w-40 overflow-hidden rounded-full">
+    <div className="group h-40 w-40 overflow-hidden rounded-full">
       <img
         src="/monkey_pfp.png"
         alt={profile.name}
-        className="h-full w-full object-cover [image-rendering:pixelated]"
+        className="h-full w-full object-cover [image-rendering:pixelated] motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out motion-safe:group-hover:scale-105"
       />
     </div>
   )
