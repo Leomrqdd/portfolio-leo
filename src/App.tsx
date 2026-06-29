@@ -1,5 +1,22 @@
-import { profile, now, work, socials } from './data'
+import { profile, now, work, socials, KEVRED_URL, type RichText } from './data'
 import { Section } from './components/Section'
+
+const linkClass =
+  'text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-ink'
+
+/** Renders plain text, or text with one inline link. */
+function Rich({ value }: { value: RichText }) {
+  if (typeof value === 'string') return <>{value}</>
+  return (
+    <>
+      {value.pre}
+      <a href={value.link.href} target="_blank" rel="noreferrer" className={linkClass}>
+        {value.link.label}
+      </a>
+      {value.post}
+    </>
+  )
+}
 
 function App() {
   return (
@@ -10,15 +27,31 @@ function App() {
         <p className="mt-1.5 font-pixel text-[11px] leading-relaxed text-muted">
           {profile.role}
         </p>
-        <p className="mt-5 max-w-prose text-ink/90">{profile.bio}</p>
+        <div className="mt-5 max-w-prose space-y-4 text-ink/90">
+          <p>
+            Hey, I'm Léo. I went from managing technical projects at a small
+            French VR startup to co-founding{' '}
+            <a href={KEVRED_URL} target="_blank" rel="noreferrer" className={linkClass}>
+              Kevred
+            </a>
+            , where I work as a software engineer.
+          </p>
+          <p>
+            Currently building infrastructure and open-source projects around
+            blockchain and Solana.
+          </p>
+        </div>
       </header>
 
       <div className="space-y-12">
         <Section title="Now" delay={80}>
           <ul className="space-y-2">
-            {now.map((line) => (
-              <li key={line} className="text-ink/90">
-                {line}
+            {now.map((item) => (
+              <li
+                key={typeof item === 'string' ? item : item.link.label}
+                className="text-ink/90"
+              >
+                <Rich value={item} />
               </li>
             ))}
           </ul>
@@ -29,12 +62,34 @@ function App() {
             {work.map((item) => (
               <li key={item.name} className="py-4 first:pt-0 last:pb-0">
                 <div className="flex items-baseline justify-between gap-4">
-                  <span className="font-medium text-ink">{item.name}</span>
+                  {item.href ? (
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={`font-medium ${linkClass}`}
+                    >
+                      {item.name}
+                    </a>
+                  ) : (
+                    <span className="font-medium text-ink">{item.name}</span>
+                  )}
                   <span className="shrink-0 font-pixel text-[10px] uppercase tracking-wide text-muted">
                     {item.period}
                   </span>
                 </div>
-                <p className="mt-1 text-muted">{item.description}</p>
+                {Array.isArray(item.description) ? (
+                  <ul className="mt-1 space-y-0.5 text-muted">
+                    {item.description.map((d) => (
+                      <li key={d} className="flex gap-2">
+                        <span aria-hidden="true">•</span>
+                        <span>{d}</span>
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p className="mt-1 text-muted">{item.description}</p>
+                )}
               </li>
             ))}
           </ul>
@@ -49,7 +104,7 @@ function App() {
                   href={s.href}
                   target={s.href.startsWith('http') ? '_blank' : undefined}
                   rel="noreferrer"
-                  className="text-ink underline decoration-line underline-offset-4 transition-colors hover:decoration-ink"
+                  className={linkClass}
                 >
                   {s.display}
                 </a>
